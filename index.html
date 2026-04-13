@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pochta Markazlarini Raqamlashtirish | UzPost</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a5f',
+                        secondary: '#00a8e8',
+                        accent: '#ffd700',
+                        modern: {
+                            purple: '#7c3aed',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1.5s ease-out',
+                        'slide-in-down': 'slideInDown 1s ease-out',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'spin': 'spin 1s linear infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, #1e3a5f 0%, #00a8e8 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .blink-cursor {
+            animation: blink 0.7s infinite;
+        }
+    </style>
+</head>
+<body class="font-sans leading-relaxed text-gray-800 overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading" class="fixed inset-0 bg-gradient-custom flex justify-center items-center z-[9999] transition-opacity duration-500">
+        <div class="w-20 h-20 border-4 border-white/30 border-t-accent rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-primary/95 backdrop-blur-md px-8 md:px-12 py-4 flex justify-between items-center z-[1000] shadow-lg transition-all duration-300">
+        <a href="#" class="text-2xl font-bold text-white">Uz<span class="text-accent">Post</span></a>
+        <ul class="hidden md:flex gap-8 list-none">
+            <li><a href="#hero" class="text-white font-medium hover:text-accent transition-colors">Bosh sahifa</a></li>
+            <li><a href="#about" class="text-white font-medium hover:text-accent transition-colors">Biz haqimizda</a></li>
+            <li><a href="#stages" class="text-white font-medium hover:text-accent transition-colors">Bosqichlar</a></li>
+            <li><a href="#features" class="text-white font-medium hover:text-accent transition-colors">Imkoniyatlar</a></li>
+            <li><a href="#future" class="text-white font-medium hover:text-accent transition-colors">Kelajak</a></li>
+            <li><a href="#contact" class="text-white font-medium hover:text-accent transition-colors">Aloqa</a></li>
+        </ul>
+        <div class="md:hidden text-2xl text-white cursor-pointer mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen bg-gradient-to-br from-primary/90 via-secondary/80 to-modern-purple/70 flex flex-col justify-center items-center text-center text-white relative overflow-hidden" 
+             style="background-image: linear-gradient(rgba(30, 58, 95, 0.85), rgba(0, 168, 232, 0.75), rgba(124, 58, 237, 0.6)), url('https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=1920'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="max-w-4xl px-10 py-10 animate-fade-in-up">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-shadow-lg animate-slide-in-down">
+                Pochta Markazlarida Ishlab Chiqarish Jarayonlarini Raqamlashtirish
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-3xl mb-6 leading-relaxed animate-fade-in">
+                🎉 Saytga Xush Kelibsiz! Sizni Ko'rib Turganimizdan Bag'oyatda Xursandmiz! 🎉
+            </p>
+            <p class="text-lg md:text-xl mb-8 opacity-90">
+                UzPost - Zamonaviy Texnologiyalar Orqali Kelajakka Qadam
+            </p>
+            <p class="text-lg md:text-xl mb-10 font-semibold text-accent">
+                ✨ Sizni Ko'rib Turganimizdan Xursandmiz! ✨
+            </p>
+            <p class="text-2xl md:text-3xl mb-12 font-bold">
+                Hurmat bilan, <span class="text-accent">BOBOSHER</span>
+            </p>
+            <a href="#about" class="inline-block px-12 py-4 bg-accent text-primary font-bold text-lg rounded-full transition-all duration-300 shadow-xl hover:-translate-y-1 hover:shadow-2xl">
+                Batafsil Ma'lumot
+            </a>
+        </div>
+        <div class="scroll-indicator absolute bottom-8">
+            <i class="fas fa-chevron-down text-3xl text-white"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-5 max-w-7xl mx-auto">
+        <h2 class="text-center text-4xl md:text-5xl text-primary mb-16 relative after:content-[''] after:block after:w-24 after:h-1 after:bg-secondary after:mx-auto after:mt-5 after:rounded">
+            Biz Haqimizda
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5">
+            <!-- Card 1 -->
+            <div class="card bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl relative group">
+                <div class="h-64 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600');">
+                    <div class="absolute top-5 right-5 w-14 h-14 bg-accent text-primary rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">1</div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-primary text-2xl font-semibold mb-4">📬 UzPost Tarixi</h3>
+                    <p class="text-gray-600 leading-relaxed">O'zbekiston Respublikasi Pochta aloqasi tizimi uzoq yillik tarixga ega bo'lib, bugungi kunda zamonaviy raqamli texnologiyalar bilan yangilanmoqda. Bizning maqsadimiz - aholiga sifatli va tezkor xizmat ko'rsatish.</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl relative group">
+                <div class="h-64 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600');">
+                    <div class="absolute top-5 right-5 w-14 h-14 bg-accent text-primary rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">2</div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-primary text-2xl font-semibold mb-4">🚀 Raqamlashtirish</h3>
+                    <p class="text-gray-600 leading-relaxed">Raqamlashtirish jarayoni pochta xizmatlarini avtomatlashtirish, mijozlar uchun qulay shart-sharoitlar yaratish va xizmat ko'rsatish sifatini oshirishni o'z ichiga oladi.</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl relative group">
+                <div class="h-64 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600');">
+                    <div class="absolute top-5 right-5 w-14 h-14 bg-accent text-primary rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">3</div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-primary text-2xl font-semibold mb-4">💡 Innovatsiyalar</h3>
+                    <p class="text-gray-600 leading-relaxed">Sun'iy intellekt, IoT, blockchain va boshqa zamonaviy texnologiyalarni joriy etish orqali pochta xizmatlarini yangi bosqichga olib chiqamiz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section - Rivojlanish Bosqichlari -->
+     <section id="stages" class="py-24 px-5 bg-gray-50">
+        <h2 class="text-center text-4xl md:text-5xl text-primary mb-16 relative after:content-[''] after:block after:w-24 after:h-1 after:bg-secondary after:mx-auto after:mt-5 after:rounded">
+            Rivojlanish Bosqichlari
+        </h2>
+        <div class="relative max-w-5xl mx-auto">
+            <!-- Timeline Line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-secondary rounded hidden md:block"></div>
+            
+            <!-- Timeline Items -->
+            <div class="space-y-8">
+                <!-- Item 1 -->
+                <div class="flex flex-col md:flex-row items-center justify-end w-full md:w-1/2 relative md:pr-12">
+                    <div class="hidden md:block absolute right-0 top-1/2 transform translate-x-8 w-5 h-5 bg-accent rounded-full border-4 border-primary"></div>
+                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full md:mr-12 ml-12 md:ml-0">
+                        <span class="text-secondary font-bold text-xl">2020</span>
+                        <h3 class="text-primary text-2xl font-semibold mt-2 mb-3">Boshlang'ich Bosqich</h3>
+                        <p class="text-gray-600">Raqamlashtirish strategiyasi ishlab chiqildi va dastlabki loyihalar boshlandi. Elektron hujjat aylanish tizimi joriy etildi.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="flex flex-col md:flex-row items-center justify-start w-full md:w-1/2 md:ml-auto relative md:pl-12">
+                    <div class="hidden md:block absolute left-0 top-1/2 transform -translate-x-8 w-5 h-5 bg-accent rounded-full border-4 border-primary"></div>
+                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full md:ml-12 ml-12 md:ml-0">
+                        <span class="text-secondary font-bold text-xl">2021</span>
+                        <h3 class="text-primary text-2xl font-semibold mt-2 mb-3">Infrastruktura</h3>
+                        <p class="text-gray-600">Pochta bo'limlarida zamonaviy uskuna va texnikalar o'rnatildi. Xodimlar uchun o'qitish kurslari tashkil etildi.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="flex flex-col md:flex-row items-center justify-end w-full md:w-1/2 relative md:pr-12">
+                    <div class="hidden md:block absolute right-0 top-1/2 transform translate-x-8 w-5 h-5 bg-accent rounded-full border-4 border-primary"></div>
+                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full md:mr-12 ml-12 md:ml-0">
+                        <span class="text-secondary font-bold text-xl">2022</span>
+                        <h3 class="text-primary text-2xl font-semibold mt-2 mb-3">Avtomatlashtirish</h3>
+                        <p class="text-gray-600">Pochta jo'natmalarini avtomatik saralash tizimi ishga tushirildi. Tracking kodlari joriy qilindi.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="flex flex-col md:flex-row items-center justify-start w-full md:w-1/2 md:ml-auto relative md:pl-12">
+                    <div class="hidden md:block absolute left-0 top-1/2 transform -translate-x-8 w-5 h-5 bg-accent rounded-full border-4 border-primary"></div>
+                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full md:ml-12 ml-12 md:ml-0">
+                        <span class="text-secondary font-bold text-xl">2023</span>
+                        <h3 class="text-primary text-2xl font-semibold mt-2 mb-3">Mobil Ilovalar</h3>
+                        <p class="text-gray-600">Mijozlar uchun mobil ilova yaratildi. Onlayn buyurtma va to'lov tizimi ishga tushdi.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="flex flex-col md:flex-row items-center justify-end w-full md:w-1/2 relative md:pr-12">
+                    <div class="hidden md:block absolute right-0 top-1/2 transform translate-x-8 w-5 h-5 bg-accent rounded-full border-4 border-primary"></div>
+                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full md:mr-12 ml-12 md:ml-0">
+                        <span class="text-secondary font-bold text-xl">2024</span>
+                        <h3 class="text-primary text-2xl font-semibold mt-2 mb-3">Sun'iy Intellekt</h3>
+                        <p class="text-gray-600">AI asosida jo'natmalarni optimallashtirish va chatbot xizmati yo'lga qo'yildi.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="flex flex-col md:flex-row items-center justify-start w-full md:w-1/2 md:ml-auto relative md:pl-12">
+                    <div class="hidden md:block absolute left-0 top-1/2 transform -translate-x-8 w-5 h-5 bg-accent rounded-full border-4 border-primary"></div>
+                    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full md:ml-12 ml-12 md:ml-0">
+                        <span class="text-secondary font-bold text-xl">2025</span>
+                        <h3 class="text-primary text-2xl font-semibold mt-2 mb-3">To'liq Integratsiya</h3>
+                        <p class="text-gray-600">Barcha tizimlar birlashtirildi. Blockchain texnologiyasi joriy etildi. Xalqaro hamkorlik kengaydi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats bg-gradient-custom py-20 px-5 text-white">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto">
+            <div class="text-center stat-item">
+                <div class="text-5xl md:text-6xl font-bold text-accent mb-3 counter" data-target="500">0</div>
+                <div class="text-lg md:text-xl opacity-90">Pochta Bo'limlari</div>
+            </div>
+            <div class="text-center stat-item">
+                <div class="text-5xl md:text-6xl font-bold text-accent mb-3 counter" data-target="15000">0</div>
+                <div class="text-lg md:text-xl opacity-90">Xodimlar Soni</div>
+            </div>
+            <div class="text-center stat-item">
+                <div class="text-5xl md:text-6xl font-bold text-accent mb-3 counter" data-target="35">0</div>
+                <div class="text-lg md:text-xl opacity-90">Mijozlar (mln)</div>
+            </div>
+            <div class="text-center stat-item">
+                <div class="text-5xl md:text-6xl font-bold text-accent mb-3 counter" data-target="98">0</div>
+                <div class="text-lg md:text-xl opacity-90">Qoniqish (%)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-5">
+        <h2 class="text-center text-4xl md:text-5xl text-primary mb-16 relative after:content-[''] after:block after:w-24 after:h-1 after:bg-secondary after:mx-auto after:mt-5 after:rounded">
+            Asosiy Imkoniyatlar
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Feature 1 -->
+            <div class="feature-item bg-white p-10 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-3">
+                <div class="w-20 h-20 bg-gradient-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-box text-3xl text-white"></i>
+                </div>
+                <h3 class="text-primary text-xl font-semibold mb-4">Tezkor Yetkazib Berish</h3>
+                <p class="text-gray-600">Optimallashtirilgan marshrutlar va avtomatik saralash tizimi orqali jo'natmalarni eng qisqa muddatda yetkazamiz.</p>
+            </div>
+            <!-- Feature 2 -->
+            <div class="feature-item bg-white p-10 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-3">
+                <div class="w-20 h-20 bg-gradient-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-mobile-alt text-3xl text-white"></i>
+                </div>
+                <h3 class="text-primary text-xl font-semibold mb-4">Mobil Ilova</h3>
+                <p class="text-gray-600">Uydan chiqmasdan buyurtma berish, to'lov qilish va jo'natmani kuzatish imkoniyati.</p>
+            </div>
+            <!-- Feature 3 -->
+            <div class="feature-item bg-white p-10 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-3">
+                <div class="w-20 h-20 bg-gradient-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-shield-alt text-3xl text-white"></i>
+                </div>
+                <h3 class="text-primary text-xl font-semibold mb-4">Xavfsizlik</h3>
+                <p class="text-gray-600">Blockchain texnologiyasi va zamonaviy shifrlash usullari bilan ma'lumotlaringiz himoyada.</p>
+            </div>
+            <!-- Feature 4 -->
+            <div class="feature-item bg-white p-10 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-3">
+                <div class="w-20 h-20 bg-gradient-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-globe text-3xl text-white"></i>
+                </div>
+                <h3 class="text-primary text-xl font-semibold mb-4">Xalqaro Hamkorlik</h3>
+                <p class="text-gray-600">Dunyo bo'ylab 190 dan ortiq mamlakatlar bilan hamkorlik. Global tarmoqqa ulanganmiz.</p>
+            </div>
+            <!-- Feature 5 -->
+            <div class="feature-item bg-white p-10 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-3 cursor-pointer" onclick="document.getElementById('ai-chatbot-window').classList.remove('hidden'); document.getElementById('ai-chatbot-window').classList.add('flex');">
+                <div class="w-20 h-20 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-robot text-3xl text-white"></i>
+                </div>
+                <h3 class="text-primary text-xl font-semibold mb-4">AI Yordamchi</h3>
+                <p class="text-gray-600">24/7 ishlaydigan chatbot va virtual yordamchi orqali savollaringizga tezkor javob. Pastdagi robot ikonkasini bosing!</p>
+            </div>
+            <!-- Feature 6 -->
+            <div class="feature-item bg-white p-10 rounded-2xl text-center shadow-lg transition-all duration-300 hover:-translate-y-3">
+                <div class="w-20 h-20 bg-gradient-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-chart-line text-3xl text-white"></i>
+                </div>
+                <h3 class="text-primary text-xl font-semibold mb-4">Analitika</h3>
+                <p class="text-gray-600">Katta ma'lumotlar tahlili orqali xizmat sifatini doimiy ravishda yaxshilaymiz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 Bo'lim - Kelajak Istiqbollari -->
+    <section id="future" class="py-24 px-5 text-white text-center" 
+             style="background: linear-gradient(rgba(30, 58, 95, 0.9), rgba(0, 168, 232, 0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920') center/cover;">
+        <h2 class="text-4xl md:text-5xl mb-16 relative after:content-[''] after:block after:w-24 after:h-1 after:bg-accent after:mx-auto after:mt-5 after:rounded">
+            Kelajak Istiqbollari
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+            <!-- Future Card 1 -->
+            <div class="future-card glass-effect p-10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
+                <i class="fas fa-drone text-5xl text-accent mb-5 block"></i>
+                <h3 class="text-2xl font-semibold mb-4">Drone Yetkazib Berish</h3>
+                <p class="opacity-90">2026-2027 yillarda drone texnologiyasi orqali qiyin hududlarga jo'natmalarni yetkazish tizimi yo'lga qo'yiladi.</p>
+            </div>
+            <!-- Future Card 2 -->
+            <div class="future-card glass-effect p-10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
+                <i class="fas fa-warehouse text-5xl text-accent mb-5 block"></i>
+                <h3 class="text-2xl font-semibold mb-4">Aqllı Omborlar</h3>
+                <p class="opacity-90">Robotlashtirilgan omborxonalar va avtomatik saqlash tizimlari joriy etiladi.</p>
+            </div>
+            <!-- Future Card 3 -->
+            <div class="future-card glass-effect p-10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
+                <i class="fas fa-fingerprint text-5xl text-accent mb-5 block"></i>
+                <h3 class="text-2xl font-semibold mb-4">Biometrik ID</h3>
+                <p class="opacity-90">Mijozlarni identifikatsiya qilish uchun biometrik tizimlar ishlatiladi.</p>
+            </div>
+            <!-- Future Card 4 -->
+            <div class="future-card glass-effect p-10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
+                <i class="fas fa-leaf text-5xl text-accent mb-5 block"></i>
+                <h3 class="text-2xl font-semibold mb-4">Ekologik Toza</h3>
+                <p class="opacity-90">Elektr transportlari va qayta ishlanadigan qadoqlash materiallari.</p>
+            </div>
+            <!-- Future Card 5 -->
+            <div class="future-card glass-effect p-10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
+                <i class="fas fa-vr-cardboard text-5xl text-accent mb-5 block"></i>
+                <h3 class="text-2xl font-semibold mb-4">VR Ofislari</h3>
+                <p class="opacity-90">Virtual reallik orqali masofadan xizmat ko'rsatish imkoniyati.</p>
+            </div>
+            <!-- Future Card 6 -->
+            <div class="future-card glass-effect p-10 rounded-2xl transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
+                <i class="fas fa-satellite text-5xl text-accent mb-5 block"></i>
+                <h3 class="text-2xl font-semibold mb-4">5G Tarmog'i</h3>
+                <p class="opacity-90">Eng tezkor aloqa tarmog'i orqali real vaqt rejimida boshqaruv.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Info Section -->
+    <section class="py-24 px-5 max-w-7xl mx-auto">
+        <h2 class="text-center text-4xl md:text-5xl text-primary mb-16 relative after:content-[''] after:block after:w-24 after:h-1 after:bg-secondary after:mx-auto after:mt-5 after:rounded">
+            Qo'shimcha Ma'lumotlar
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5">
+            <!-- Card 4 -->
+            <div class="card bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl relative group">
+                <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600');">
+                    <div class="absolute top-5 right-5 w-14 h-14 bg-accent text-primary rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">4</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-primary text-xl font-semibold mb-3">📊 Statistik Tahlil</h3>
+                    <p class="text-gray-600 leading-relaxed">Har oyda millionlab jo'natmalar qayta ishlanadi. Raqamlashtirish natijasida xizmat ko'rsatish tezligi 300% ga oshdi.</p>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="card bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl relative group">
+                <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600');">
+                    <div class="absolute top-5 right-5 w-14 h-14 bg-accent text-primary rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">5</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-primary text-xl font-semibold mb-3">🤝 Jamoa</h3>
+                    <p class="text-gray-600 leading-relaxed">Malakali mutaxassislardan iborat jamoamiz doimiy ravishda yangi texnologiyalarni o'rganadi va joriy etadi.</p>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="card bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl relative group">
+                <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600');">
+                    <div class="absolute top-5 right-5 w-14 h-14 bg-accent text-primary rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">6</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-primary text-xl font-semibold mb-3">🏆 Yutuqlar</h3>
+                    <p class="text-gray-600 leading-relaxed">Xalqaro reytinglarda O'zbekiston pochta xizmati so'nggi 3 yilda 50 pog'onaga yuqoriladi.</p>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="card bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl relative group">
+                <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600');">
+                    <div class="absolute top-5 right-5 w-14 h-14 bg-accent text-primary rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">7</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-primary text-xl font-semibold mb-3">📈 Rivojlanish Rejalari</h3>
+                    <p class="text-gray-600 leading-relaxed">2025-2030 yillarda to'liq avtonom pochta tizimini yaratish va Markaziy Osiyoda yetakchi bo'lish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-5 bg-gray-50">
+        <h2 class="text-center text-4xl md:text-5xl text-primary mb-16 relative after:content-[''] after:block after:w-24 after:h-1 after:bg-secondary after:mx-auto after:mt-5 after:rounded">
+            Biz Bilan Bog'laning
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+            <!-- Contact Info -->
+            <div class="contact-info bg-white p-10 rounded-2xl shadow-xl">
+                <h3 class="text-primary text-3xl font-semibold mb-8">Aloqa Ma'lumotlari</h3>
+                
+                <div class="contact-item flex items-center mb-6 p-5 bg-gray-50 rounded-xl transition-all duration-300 hover:bg-gradient-custom group">
+                    <i class="fas fa-phone-alt text-3xl text-secondary mr-5 w-12 text-center transition-colors"></i>
+                    <div>
+                        <span class="block font-semibold mb-1 text-gray-700 group-hover:text-white transition-colors">Telefon</span>
+                        <a href="tel:+998931295169" class="text-lg text-gray-600 group-hover:text-white transition-colors">+998 93 129-51-69</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item flex items-center mb-6 p-5 bg-gray-50 rounded-xl transition-all duration-300 hover:bg-gradient-custom group">
+                    <i class="fas fa-envelope text-3xl text-secondary mr-5 w-12 text-center transition-colors"></i>
+                    <div>
+                        <span class="block font-semibold mb-1 text-gray-700 group-hover:text-white transition-colors">Email</span>
+                        <a href="mailto:bobosherdaminov4@gmail.com" class="text-lg text-gray-600 group-hover:text-white transition-colors">bobosherdaminov4@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item flex items-center mb-6 p-5 bg-gray-50 rounded-xl transition-all duration-300 hover:bg-gradient-custom group">
+                    <i class="fas fa-map-marker-alt text-3xl text-secondary mr-5 w-12 text-center transition-colors"></i>
+                    <div>
+                        <span class="block font-semibold mb-1 text-gray-700 group-hover:text-white transition-colors">Manzil</span>
+                        <span class="text-lg text-gray-600 group-hover:text-white transition-colors">Qashqadaryo vil., Qarshi sh., Beshkent, M6 yo'li, TATU ko'chasi, 5-uy</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item flex items-center mb-6 p-5 bg-gray-50 rounded-xl transition-all duration-300 hover:bg-gradient-custom group">
+                    <i class="fas fa-clock text-3xl text-secondary mr-5 w-12 text-center transition-colors"></i>
+                    <div>
+                        <span class="block font-semibold mb-1 text-gray-700 group-hover:text-white transition-colors">Ish Vaqti</span>
+                        <span class="text-lg text-gray-600 group-hover:text-white transition-colors">Dushanba - Yakshanba: 09:00 - 18:00</span>
+                    </div>
+                </div>
+                
+                <div class="social-links flex gap-5 mt-8 flex-wrap">
+                    <a href="https://t.me/Bobosherdaminov" class="social-link w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-[360deg] shadow-lg" target="_blank" title="Telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <a href="https://www.instagram.com/bobosherdaminov1?igsh=aWw4N20xZmgzdWM3&utm_source=qr" class="social-link w-14 h-14 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-[360deg] shadow-lg" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/bobosherdaminov" class="social-link w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-[360deg] shadow-lg" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://youtube.com/@bobosherdaminov" class="social-link w-14 h-14 bg-gradient-to-r from-red-600 to-red-800 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-[360deg] shadow-lg" target="_blank" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="tel:+998931295169" class="social-link w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-[360deg] shadow-lg" title="Qo'ng'iroq qilish">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="https://gemini.google.com" target="_blank" class="social-link w-14 h-14 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full flex items-center justify-center text-white text-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-[360deg] shadow-lg" title="AI Yordamchi - Gemini">
+                        <i class="fas fa-robot"></i>
+                    </a>
+                </div>
+                
+                <!-- Signature -->
+                <div class="mt-10 pt-6 border-t border-gray-200">
+                    <p class="text-center text-gray-500 text-sm mb-2">Sizni Ko'rib Turganimizdan Xursandmiz!</p>
+                    <p class="text-center text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">Hurmat bilan, BOBOSHER</p>
+                    <p class="text-center text-gray-400 text-xs mt-2">💻 Web Dasturchi & AI Mutaxassisi</p>
+                </div>
+            </div>
+            
+            <!-- Map -->
+            <div class="contact-info bg-white p-10 rounded-2xl shadow-xl">
+                <h3 class="text-primary text-3xl font-semibold mb-8">Xarita - TATU QARSHI Filiali</h3>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3029.5!2d65.7897!3d38.8518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDUxJzA2LjUiTiA2NcKwNDcnMjIuOSJF!5e0!3m2!1suz!2s!4v1234567890" 
+                    width="100%" 
+                    height="450" 
+                    class="border-0 rounded-xl"
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+                <p class="mt-4 text-center text-gray-600 font-medium">📍 TATU Qarshi Filiali</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Button -->
+    <div id="ai-chatbot-btn" class="fixed bottom-6 right-6 z-[1000] cursor-pointer">
+        <div class="w-16 h-16 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 animate-bounce-slow">
+            <i class="fas fa-robot text-3xl text-white"></i>
+        </div>
+        <span class="absolute -top-2 -right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
+    </div>
+
+    <!-- AI Chatbot Window -->
+    <div id="ai-chatbot-window" class="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl z-[1000] hidden flex-col overflow-hidden border border-gray-200">
+        <!-- Chat Header -->
+        <div class="bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-robot text-white text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold">AI Yordamchi</h4>
+                    <p class="text-white/80 text-xs">Online - Savollaringizga javob beraman</p>
+                </div>
+            </div>
+            <button id="close-chatbot" class="text-white hover:text-gray-200 transition-colors">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="flex-1 h-80 overflow-y-auto p-4 bg-gray-50 space-y-3">
+            <div class="flex items-start gap-2">
+                <div class="w-8 h-8 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-robot text-white text-sm"></i>
+                </div>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%]">
+                    <p class="text-gray-700 text-sm">Assalomu alaykum! 👋 Men BOBOSHER yaratgan AI yordamchiman. Sizga qanday yordam bera olaman?</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="p-3 bg-white border-t border-gray-200 flex gap-2 overflow-x-auto">
+            <button onclick="sendQuickQuestion('Pochta xizmatlari qanday?')" class="px-3 py-1.5 bg-violet-100 text-violet-700 rounded-full text-xs whitespace-nowrap hover:bg-violet-200 transition-colors">📬 Pochta xizmatlari</button>
+            <button onclick="sendQuickQuestion('Raqamlashtirish nima?')" class="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-xs whitespace-nowrap hover:bg-purple-200 transition-colors">💡 Raqamlashtirish</button>
+            <button onclick="sendQuickQuestion('Bog\'lanish ma\'lumotlari')" class="px-3 py-1.5 bg-pink-100 text-pink-700 rounded-full text-xs whitespace-nowrap hover:bg-pink-200 transition-colors">📞 Bog\'lanish</button>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="p-3 bg-white border-t border-gray-200 flex gap-2">
+            <input 
+                type="text" 
+                id="chat-input" 
+                placeholder="Savolingizni yozing..." 
+                class="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+                onkeypress="if(event.key === 'Enter') sendMessage()"
+            >
+            <button onclick="sendMessage()" class="w-10 h-10 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                <i class="fas fa-paper-plane text-white text-sm"></i>
+            </button>
+            <button onclick="openGemini()" class="w-10 h-10 bg-gradient-to-r from-pink-600 to-red-600 rounded-full flex items-center justify-center hover:scale-105 transition-transform" title="Gemini ga o'tish">
+                <i class="fas fa-external-link-alt text-white text-sm"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-8 px-5">
+        <p class="opacity-80">&copy; 2025 UzPost - O'zbekiston Pochta Aloqasi. Barcha huquqlar himoyalangan.</p>
+        <p class="mt-3 text-sm opacity-70">Raqamli Kelajak Sari Birgalikda!</p>
+        <p class="mt-2 text-xs opacity-50">Developed by BOBOSHER</p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.style.opacity = '0';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-2xl');
+                navbar.style.background = 'rgba(30, 58, 95, 0.98)';
+            } else {
+                navbar.classList.remove('shadow-2xl');
+                navbar.style.background = 'rgba(30, 58, 95, 0.95)';
+            }
+        });
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 10);
+                } else {
+                    counter.innerText = target.toLocaleString();
+                }
+            });
+        };
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('stats')) {
+                        animateCounters();
+                    }
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.8s ease-out';
+            observer.observe(section);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('nav ul');
+
+        mobileMenu.addEventListener('click', () => {
+            if (navLinks.classList.contains('hidden')) {
+                navLinks.classList.remove('hidden');
+                navLinks.classList.add('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-primary', 'p-5', 'shadow-xl');
+            } else {
+                navLinks.classList.add('hidden');
+                navLinks.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'right-0', 'bg-primary', 'p-5', 'shadow-xl');
+            }
+        });
+
+        // AI Chatbot Functionality
+        const chatbotBtn = document.getElementById('ai-chatbot-btn');
+        const chatbotWindow = document.getElementById('ai-chatbot-window');
+        const closeChatbot = document.getElementById('close-chatbot');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+
+        // AI Response Database
+        const aiResponses = {
+            'pochta': '📬 Pochta xizmatlarimiz orasida jo\'natma yetkazib berish, posilka qabul qilish, pul o\'tkazmalari va elektron xizmatlar mavjud. Batafsil ma\'lumot uchun aloqa bo\'limiga qarang!',
+            'raqamlashtirish': '💡 Raqamlashtirish - bu an\'anaviy jarayonlarni zamonaviy texnologiyalar bilan almashtirish. Bizda bu avtomatik saralash, tracking kodlar, mobil ilova va AI yordamchilarni o\'z ichiga oladi.',
+            'bog': '📞 Biz bilan bog\'lanish:\n📱 Tel: +998 93 129-51-69\n📧 Email: bobosherdaminov4@gmail.com\n📍 Manzil: Qashqadaryo vil., Qarshi sh., TATU ko\'chasi 5-uy',
+            'xush': '🎉 Sizni ham ko\'rib turganimizdan bag\'oyatda xursandmiz! Hurmat bilan, BOBOSHER',
+            'bobosher': '💻 BOBOSHER - Web dasturchi va AI mutaxassisi. Ushbu saytni yaratgan va sizga xizmat ko\'rsatishdan xursand!',
+            'tatu': '🎓 TATU Qarshi filiali - Axborot texnologiyalari universitetining zamonaviy filiali. Bizning manzil: Qashqadaryo vil., Qarshi sh., Beshkent, M6 yo\'li, TATU ko\'chasi 5-uy',
+            'xizmat': '✨ Bizning xizmatlar:\n• Tezkor yetkazib berish\n• Onlayn tracking\n• Mobil ilova\n• 24/7 AI yordam\n• Xalqaro hamkorlik',
+            'default': '🤔 Savolingizni aniqroq bering yoki quyidagi mavzulardan birini tanlang: Pochta xizmatlari, Raqamlashtirish, Bog\'lanish, TATU, Xizmatlar. Yoki Gemini ga o\'tib batafsil ma\'lumot olishingiz mumkin!'
+        };
+
+        function getAIResponse(question) {
+            const q = question.toLowerCase();
+            if (q.includes('pochta') || q.includes('xizmat')) return aiResponses.pochta;
+            if (q.includes('raqam') || q.includes('digit')) return aiResponses.raqamlashtirish;
+            if (q.includes('bog') || q.includes('aloqa') || q.includes('telefon') || q.includes('email')) return aiResponses.bog;
+            if (q.includes('xush') || q.includes('kelib') || q.includes('salom')) return aiResponses.xush;
+            if (q.includes('bobosher') || q.includes('yarat')) return aiResponses.bobosher;
+            if (q.includes('tatu') || q.includes('universitet') || q.includes('qarshi')) return aiResponses.tatu;
+            return aiResponses.default;
+        }
+
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex items-start gap-2 ${isUser ? 'flex-row-reverse' : ''}`;
+            
+            messageDiv.innerHTML = `
+                <div class="w-8 h-8 ${isUser ? 'bg-gradient-to-r from-blue-500 to-cyan-500' : 'bg-gradient-to-r from-violet-600 to-purple-600'} rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas ${isUser ? 'fa-user' : 'fa-robot'} text-white text-sm"></i>
+                </div>
+                <div class="${isUser ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white' : 'bg-white text-gray-700'} p-3 rounded-2xl ${isUser ? 'rounded-tr-none' : 'rounded-tl-none'} shadow-sm max-w-[80%]">
+                    <p class="text-sm whitespace-pre-line">${text}</p>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Simulate AI thinking
+            setTimeout(() => {
+                const response = getAIResponse(message);
+                addMessage(response, false);
+            }, 800);
+        }
+
+        function sendQuickQuestion(question) {
+            chatInput.value = question;
+            sendMessage();
+        }
+
+        function openGemini() {
+            window.open('https://gemini.google.com', '_blank');
+        }
+
+        // Toggle Chatbot
+        chatbotBtn.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('hidden');
+            chatbotWindow.classList.toggle('flex');
+        });
+
+        closeChatbot.addEventListener('click', () => {
+            chatbotWindow.classList.add('hidden');
+            chatbotWindow.classList.remove('flex');
+        });
+
+        console.log('🚀 UzPost Digital Transformation - Web Sayt Muvaffaqiyatli Yuklandi!');
+        console.log('💻 Tailwind CSS versiyasi - BOBOSHER tomonidan yaratildi');
+        console.log('🤖 AI Chatbot - Savollarga javob beradi yoki Gemini ga yo\'naltiradi');
+    </script>
+</body>
+</html>
